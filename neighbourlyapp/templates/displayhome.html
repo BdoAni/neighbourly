@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- {% load static %}
+    <link rel="stylesheet" href="{% static '/css/style.css' %}"> -->
+    <title>Login and Registration</title>
+    <style>
+        body, html {
+            height: 100%;
+        }
+        
+        .parallax {
+          /* The image used */
+            background-image: url('img_parallax.jpg');
+        
+          /* Full height */
+            height: 100%; 
+        
+          /* Create the parallax scrolling effect */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        </style>
+</head>
+
+<body>
+    <nav class="nav-bar-container">
+        <div class="nav-bar__logo>">
+            <a href="/" title="Neghbourly">
+                <h2>Neighbourly</h2>
+            </a>
+        </div>
+        <label for ="menu-toggle" class="nav-bar__client nav-bar__client- -open"></label>
+            <ul class="topnavbar">
+    </nav>
+    <br>
+    <div class="container">
+        <!-- <div class="parallax"></div>
+            <div style="height:1000px;background-color:red;font-size:20px">
+                <br><br> --><h1>Welcome Neighbour!!!</h1>
+                <div class="registration"><br>
+
+                    <h1>Registration</h1>
+                        <form action="/register" method="POST">
+                            {% csrf_token %}
+                            <input class="form-control-small" type="text" name="formfname"  placeholder="First Name">
+                            <br>
+                            <input class="form-control-small" type="text" name="formlname"  placeholder="Last Name">
+                            <br>
+                            <input class="form-control-small" type="text" name="formemail"  placeholder="Email">
+                            <br>
+                            <input class="form-control-small" type="password" name="formpassword" placeholder="Password" >
+                            <br>
+                            <input class="form-control-small" type="password" name="checkformpassword" placeholder="Confirm Password" >
+                            <br>
+                            <input class="btn btn-success" type="submit" value="Register">
+                        </form>
+                </div>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                <div class="login">
+                    <h1>Login</h1>
+                        <form action="/login" method="POST">
+                            {% csrf_token %}
+                            <input class="form-control-small" type="text" name="formemail" placeholder="Email"> <br>
+                            <input class="form-control-small" type="password" name="formpassword" placeholder="Password">
+                            <br>
+                            <input class="btn btn-success" type="submit" value="Submit">
+                        </form>
+                </div>
+            <!-- </div>
+        <div class="parallax"></div> -->
+    </div>
+    <div>
+        <h3> All offers</h3>
+        <div>
+        </div>
+            {%  if user.id != tool.user.id%}
+        <p>Item Name: {{thistool.item_name}}</p>
+        <p>Description: {{thistool.description}}</p>
+        <p>Location: {{thistool.location}}</p>
+        <p>Start Date: {{thistool.start_date}}</p>
+        <p>End Date: {{thistool.end_date}}</p> 
+        <p>Posted by: {{thistool.user.first_name}}</p>
+        <p>Posted on: {{thistool.created_at}}</p>
+        {% endif %}
+    </div>
+    <a class="btn btn-primary" href="/dashboard">Dashboard</a>
+</body>
+
+</html>

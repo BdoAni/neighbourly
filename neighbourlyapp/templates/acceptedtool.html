@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accepted Tools</title>
+</head>
+<body>
+    <a class="atag" href="/dashboard">Dashboard</a>| 
+    <a class="atags" href="/logout" >Logout</a>
+
+
+    <h3 class="desname"> Hello {{user.first_name}}! These are all your Tools!</h3>
+    <div class='tripditbox'>
+        {% for tool in all_tools %}
+        <p>Item Name: {{thistool.item_name}}</p>
+        <p>Description: {{thistool.description}}</p>
+        <p>Location: {{thisjob.location}}</p>
+        <p>Posted by: {{thisjob.user.first_name}}</p>
+        <p>Created On: {{thisjob.created_at}}</p>
+    {% endfor %}</div>
+</body>
+</html>

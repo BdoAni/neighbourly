@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Offer</title>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+</head>
+<body>
+    <h1> Hello {{thisUser.first_name}}! Let's Create a New Offer! </h1>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>    
+    {% endif %}
+    <form class="form-horizontal" action="/submit" method="post">
+            {% csrf_token %}
+    <p>Item Name: </p><input type="text" name="formitem_name" value="{{thisoffer.item_name}}">
+    <p>Description: </p><input type="text" name="formtitle" value="{{thisoffer.formtitle}}">
+    <p>Location: </p><input type="text" name="formlocation" value="{{thisoffer.location}}">
+    <p>Start Date: </p><input type="date" name="formstart_date" value="{{thisoffer.start_date|date:'Y-m-d'}}">
+    <p>End Date: </p> <input type="date" name="formend_date" value="{{thisoffer.start_date|date:'Y-m-d'}}">
+    <a href="/dashboard"> Cancel </a>
+    <input class='btn btn-primary ' type="submit" value="Submit">
+    </form>
+</body>
+</html>

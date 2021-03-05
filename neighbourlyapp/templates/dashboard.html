@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <a href="/logout">Logout</a>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- {% load static %}
+    <link class="logout" rel="stylesheet" href="{% static '/css/stylesuccess.css' %}"> -->
+    <title>dashboard</title>
+</head>
+<body>
+    <div class="displayhead">
+    <h1> Hello {{thisUser.first_name}}! You did it! </h1>
+    <img src="hands.png" alt="">
+        <a class="bordered" href="/new">Create an offer</a>
+            <label for="product">Choose an option:</label>
+        </div>
+        <h3> Your Tools: <section>
+            <form action="/search" method="post">
+                {% csrf_token %}
+                <input type="search" placeholder="What are you looking for?">
+                <button>Search</button>
+            </form>
+        </section></h3>
+        <table class="width:100%">
+            <thead class="table-bordered">
+                <tr>
+                    <th class="table-bordered">Item Name</th>
+                    <th class="table-bordered">Description</th>
+                    <th class="table-bordered">Location</th>
+                    <th class="table-bordered">Start Date| End Date</th>
+                    <th class="table-bordered">Posted by</th>
+                    <th class="table-bordered">Actions</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+            {%  for tool in all_tools %}
+            <tr>
+        <td> {{tool.item_name}}</td>
+        <td>{{tool.description}}</td>
+        <td> {{tool.location}}</td>
+        <td>{{tool.start_date}}| End Date: {{tool.end_date}}</td> 
+        <td> {{tool.user.first_name}}</td>
+        <td>
+            <a class="bordered" href="/display">View</a>|
+            <a class="bordered" href="/edit">Edit</a>|
+            <a class="bordered" href="/accepted">Add to Cart</a>|
+            <a class="bordered" href="/delete">Remove</a>
+        </td>
+    <!-- </tbody>
+</table> -->
+<!-- <table class="width:100%">
+    <thead class="table-bordered">
+        <tr>
+            <th class="table-bordered">Item Name</th>
+            <th class="table-bordered">Description</th>
+            <th class="table-bordered">Location</th>
+            <th class="table-bordered">Start Date| End Date</th>
+            <th class="table-bordered">Posted by</th>
+            <th class="table-bordered">Actions</th>
+            
+        </tr>
+    </thead>
+    <tbody> -->
+        {% if user.id != Tools.user.id%}
+        <td> {{tool.item_name}}</td>
+        <td>{{tool.description}}</td>
+        <td> {{tool.location}}</td>
+        <td>{{tool.start_date}}| End Date: {{tool.end_date}}</td>
+        <td> {{tool.user.first_name}}</td>
+        <td><a class="bordered" href="/display">View</a>|
+            <a class="bordered" href="/accepted">Add to Cart</a>
+        </td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+</div>
+    
+</body>
+</html>

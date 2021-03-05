@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This Tool</title>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+</head>
+<body>
+    <h1> Hello {{thisUser.first_name}}! These are the tool details! </h1>
+    <h2>Title: {{tool.title}}</h2>
+    <div class="tooldetails">
+        <p>Item Name: {{thistool.item_name}}</p>
+        <p>Description: {{thistool.description}}</p>
+        <p>Location: {{thistool.location}}</p>
+        <p>Start Date: {{thistool.start_date}}</p>
+        <p>End Date: {{thistool.end_date}}</p> 
+        <p>Posted by: {{thistool.user.first_name}}</p>
+        <p>Posted on: {{thistool.created_at}}</p>
+    </div>
+</body>
+</html>
+</head>
